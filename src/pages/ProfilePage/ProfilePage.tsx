@@ -1,4 +1,4 @@
-import { SingleFileUpload } from '@/components/FileUploads'
+import { SingleImageUpload } from '@/components/FileUploads'
 import PathUploadFile from '@/constants/uploads/uploadPath'
 import { FileUploadResponse } from '@/types/fileUploadType'
 import { Image } from 'lucide-react'
@@ -38,7 +38,7 @@ const ProfilePage = () => {
         <CardContent className="flex gap-4">
           <div>
             <div className="w-32 h-32 mb-4">
-              <SingleFileUpload
+              <SingleImageUpload
                 pathUpload={PathUploadFile.AUTH}
                 onUpload={(data) => {
                   setAvatar(data)
@@ -50,7 +50,7 @@ const ProfilePage = () => {
                 fileUpload={auth.user.avatar}
               >
                 <Image size={100} />
-              </SingleFileUpload>
+              </SingleImageUpload>
             </div>
             <Button disabled={!avatar?.url} onClick={handleUpdateAvatar}>
               Đổi ảnh đại diện

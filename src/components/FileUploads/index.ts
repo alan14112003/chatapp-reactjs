@@ -1,1 +1,1 @@
-export { SingleFileUpload } from './FileUploads'
+export * from './FileUploads'

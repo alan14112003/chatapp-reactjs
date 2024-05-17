@@ -1,30 +1,25 @@
 import { SquarePen } from 'lucide-react'
-import { buttonVariants } from '@/components/ui/button'
+import { Button } from '@/components/ui/button'
 
-import { Link } from 'react-router-dom'
-import { cn } from '@/utils/utils'
 import { useQuery } from '@tanstack/react-query'
 import ChatServices, { ChatKey } from '@/services/chatServices'
 import { Chat } from '@/types/chatType'
-import { alertErrorAxios } from '@/utils/alert'
 import ChatItem from '../ChatItem'
-import ChatItemSkeleton from '../ChatItemSkeleton'
+import BarItemSkeleton from '../BarItemSkeleton'
+import CreateGroup from '../CreateGroup'
+import { ScrollArea } from '../ui/scroll-area'
 
 function Chatbar() {
   const {
     data: chatsResponse,
     isSuccess,
-    isError,
-    error,
     isPending,
     isFetching,
   } = useQuery({
-    queryKey: [ChatKey],
+    queryKey: [ChatKey, 'all'],
     queryFn: ChatServices.all,
     refetchOnMount: true,
   })
-
-  isError && alertErrorAxios(error)
 
   const chats: Chat[] = chatsResponse?.data
   return (
@@ -36,26 +31,26 @@ function Chatbar() {
         </div>
 
         <div>
-          <Link
-            to={''}
-            className={cn(
-              buttonVariants({ variant: 'secondary', size: 'icon' }),
-              'h-9 w-9'
-            )}
-          >
-            <SquarePen size={20} />
-          </Link>
+          <CreateGroup>
+            <Button variant="secondary" size="icon">
+              <SquarePen size={20} />
+            </Button>
+          </CreateGroup>
         </div>
       </div>
 
-      <nav className="grid gap-1 px-2">
-        {isSuccess &&
-          chats.map((chat) => <ChatItem key={chat._id} chat={chat} />)}
-        {(isPending || isFetching) &&
-          Array(5)
-            .fill(0)
-            .map((val, index) => <ChatItemSkeleton key={`${val}-${index}`} />)}
-      </nav>
+      {/* xử lý chống tràng */}
+      <ScrollArea className="max-h-full">
+        <nav className="grid gap-1 px-2">
+          {isSuccess &&
+            chats.map((chat) => <ChatItem key={chat._id} chat={chat} />)}
+          {(isPending || isFetching) &&
+            !isSuccess &&
+            Array(5)
+              .fill(0)
+              .map((val, index) => <BarItemSkeleton key={`${val}-${index}`} />)}
+        </nav>
+      </ScrollArea>
     </>
   )
 }

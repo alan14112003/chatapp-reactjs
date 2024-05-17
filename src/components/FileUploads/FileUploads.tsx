@@ -7,7 +7,7 @@ import { useMutation } from '@tanstack/react-query'
 import UploadServices from '@/services/uploadServices'
 import { alertErrorAxios } from '@/utils/alert'
 
-type SingleFileUploadProp = {
+type SingleImageUploadProp = {
   children?: ReactNode
   pathUpload: string
   onUpload: (data: FileUploadResponse) => void
@@ -15,7 +15,7 @@ type SingleFileUploadProp = {
   fileUpload?: FileUploadResponse | null
 }
 
-export const SingleFileUpload: FC<SingleFileUploadProp> = memo(
+export const SingleImageUpload: FC<SingleImageUploadProp> = memo(
   ({ pathUpload, onUpload, onDelete, children, fileUpload }) => {
     const [file, setFile] = useState<File | null>(null)
     const [fileUploaded, setFileUploaded] = useState<FileUploadResponse | null>(

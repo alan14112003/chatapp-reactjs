@@ -4,10 +4,9 @@ import { Button } from '../ui/button'
 import { useRef, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import UserServices, { UserKey } from '@/services/userServices'
-import { alertErrorAxios } from '@/utils/alert'
 import { UserWithFriend } from '@/types/userType'
 import UserItem from '../UserItem'
-import ChatItemSkeleton from '../ChatItemSkeleton'
+import BarItemSkeleton from '../BarItemSkeleton'
 
 type FindUserbarProp = {
   onBack: () => void
@@ -20,8 +19,6 @@ const FindUserbar = ({ onBack }: FindUserbarProp) => {
   const {
     data: usersResponse,
     isSuccess,
-    isError,
-    error,
     isPending,
     isFetching,
   } = useQuery({
@@ -29,8 +26,6 @@ const FindUserbar = ({ onBack }: FindUserbarProp) => {
     queryFn: () => UserServices.all(key),
     refetchOnMount: true,
   })
-
-  isError && alertErrorAxios(error)
 
   const friends: UserWithFriend[] = usersResponse?.data
 
@@ -82,9 +77,10 @@ const FindUserbar = ({ onBack }: FindUserbarProp) => {
         {isSuccess &&
           friends.map((user) => <UserItem key={user._id} user={user} />)}
         {(isPending || isFetching) &&
+          !isSuccess &&
           Array(5)
             .fill(0)
-            .map((val, index) => <ChatItemSkeleton key={`${val}-${index}`} />)}
+            .map((val, index) => <BarItemSkeleton key={`${val}-${index}`} />)}
       </nav>
     </div>
   )

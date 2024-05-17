@@ -1,16 +1,13 @@
 import { useQuery } from '@tanstack/react-query'
-import { alertErrorAxios } from '@/utils/alert'
-import ChatItemSkeleton from '../ChatItemSkeleton'
 import { Friend } from '@/types/friendType'
 import FriendItem from '../FriendItem'
 import FriendServices, { FriendKey } from '@/services/friendServices'
+import BarItemSkeleton from '../BarItemSkeleton'
 
 function Friendbar() {
   const {
     data: friendsResponse,
     isSuccess,
-    isError,
-    error,
     isPending,
     isFetching,
   } = useQuery({
@@ -18,8 +15,6 @@ function Friendbar() {
     queryFn: FriendServices.all,
     refetchOnMount: true,
   })
-
-  isError && alertErrorAxios(error)
 
   const friends: Friend[] = friendsResponse?.data
   return (
@@ -29,9 +24,10 @@ function Friendbar() {
           <FriendItem key={friend._id} friend={friend} />
         ))}
       {(isPending || isFetching) &&
+        !isSuccess &&
         Array(5)
           .fill(0)
-          .map((val, index) => <ChatItemSkeleton key={`${val}-${index}`} />)}
+          .map((val, index) => <BarItemSkeleton key={`${val}-${index}`} />)}
     </nav>
   )
 }
