@@ -26,6 +26,14 @@ const AuthServices = {
     return http.post(PREV_URL + '/login', param)
   },
 
+  getInfo: () => {
+    return http.get(PREV_URL + '/profile')
+  },
+
+  updateInfo: (data: { fullName: string; gender: number }) => {
+    return http.put(PREV_URL + '/profile', data)
+  },
+
   register: (param: RegisterParam) => {
     return http.post(PREV_URL + '/register', param)
   },

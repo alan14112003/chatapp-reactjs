@@ -3,7 +3,7 @@ import { toast } from 'react-toastify'
 import { getTokenLS } from './authLS'
 import { sendEvent } from './event'
 
-const BASE_URL = 'http://localhost:80/v1'
+const BASE_URL = 'http://localhost:3000/v1'
 
 const http = axios.create({
   baseURL: BASE_URL,

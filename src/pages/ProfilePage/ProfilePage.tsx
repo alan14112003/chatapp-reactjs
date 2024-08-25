@@ -11,6 +11,7 @@ import { updateAvatarAuth } from '@/utils/utils'
 import { alertErrorAxios } from '@/utils/alert'
 import AuthServices from '@/services/authServices'
 import { toast } from 'react-toastify'
+import InfoForm from '@/components/InfoForm'
 
 const ProfilePage = () => {
   const [avatar, setAvatar] = useState<FileUploadResponse | null>()
@@ -57,7 +58,7 @@ const ProfilePage = () => {
             </Button>
           </div>
           <div>
-            <h4 className="font-semibold text-xl">{auth.user.fullName}</h4>
+            <InfoForm/>
           </div>
         </CardContent>
       </Card>

@@ -24,7 +24,6 @@ import { alertErrorAxios } from '@/utils/alert'
 import ChatServices, { ChatKey } from '@/services/chatServices'
 import { useQueryClient } from '@tanstack/react-query'
 import { Chat } from '@/types/chatType'
-import { useNavigate } from 'react-router-dom'
 
 const formSchema = z.object({
   users: z.array(z.string()),
@@ -46,7 +45,6 @@ const CreateGroup: FC<CreateGroupProp> = memo(({ children }) => {
   })
 
   const queryClient = useQueryClient()
-  const navigate = useNavigate()
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
@@ -59,7 +57,7 @@ const CreateGroup: FC<CreateGroupProp> = memo(({ children }) => {
 
       const chat: Chat = chatResponse.data
 
-      navigate(`/chats/${chat._id}`)
+      location.replace(`/chats/${chat._id}`)
     } catch (error) {
       alertErrorAxios(error)
     } finally {
