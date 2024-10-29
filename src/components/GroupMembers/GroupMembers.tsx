@@ -84,7 +84,7 @@ const GroupMembers: FC<GroupMembersProp> = memo(({ children }) => {
                   <AddGroupMemberBox members={chat.users} />
                 </TabsContent>
               </Tabs>
-              {chat.isGroup && chat.groupAdmin?._id !== auth.user._id && (
+              {/* {chat.isGroup && chat.groupAdmin?._id !== auth.user._id && (
                 <Button
                   variant={'destructive'}
                   size={'sm'}
@@ -93,7 +93,7 @@ const GroupMembers: FC<GroupMembersProp> = memo(({ children }) => {
                 >
                   Rời khỏi nhóm
                 </Button>
-              )}
+              )} */}
             </>
           )}
         </DialogContent>
