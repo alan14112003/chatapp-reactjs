@@ -92,9 +92,9 @@ const SideBar = () => {
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent>
-            <DropdownMenuItem asChild>
+            {/* <DropdownMenuItem asChild>
               <Link to={'/profile'}>Profile</Link>
-            </DropdownMenuItem>
+            </DropdownMenuItem> */}
             <DropdownMenuItem onClick={handleLogout}>
               Đăng xuất
             </DropdownMenuItem>
