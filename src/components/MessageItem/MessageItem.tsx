@@ -46,9 +46,9 @@ const MessageItem: FC<MessageItemProp> = memo(({ message, duration, user }) => {
       }}
     >
       <div className="flex gap-3 items-end">
-        {message.sender._id === user._id && showDelete && (
+        {/* {message.sender._id === user._id && showDelete && (
           <DeleteMessageItemBox message={message} />
-        )}
+        )} */}
         {message.sender._id !== user._id && (
           <Avatar className="flex justify-center items-center border">
             <AvatarImage
