@@ -12,7 +12,7 @@ const MessageContent = ({ message, isAuth }: MessageContentProp) => {
       return (
         <span
           className={cn(
-            'bg-accent p-3 rounded-3xl max-w-xs',
+            'bg-accent p-3 rounded-3xl max-w-xs message',
             isAuth && 'text-primary-foreground bg-[#0084ff]'
           )}
         >
@@ -23,7 +23,7 @@ const MessageContent = ({ message, isAuth }: MessageContentProp) => {
       return (
         <a
           className={cn(
-            'bg-accent p-3 rounded-full max-w-xs font-semibold',
+            'bg-accent p-3 rounded-full max-w-xs font-semibold message',
             isAuth && 'text-primary-foreground bg-[#0084ff]'
           )}
           href={message.file?.url}
@@ -34,7 +34,7 @@ const MessageContent = ({ message, isAuth }: MessageContentProp) => {
       )
     case MessageTypeEnum.EMOJI:
       return (
-        <div className="rounded-md max-w-xs">
+        <div className="rounded-md max-w-xs message">
           <img src={message.emoji?.src.url} alt={message.emoji?.name} />
         </div>
       )
@@ -42,7 +42,7 @@ const MessageContent = ({ message, isAuth }: MessageContentProp) => {
       return (
         <div
           className={cn(
-            'bg-accent p-3 rounded-md max-w-xs',
+            'bg-accent p-3 rounded-md max-w-xs message',
             isAuth && 'text-primary-foreground '
           )}
         >

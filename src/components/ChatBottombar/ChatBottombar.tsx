@@ -16,6 +16,7 @@ import { useParams } from 'react-router-dom'
 import MessageTypeEnum from '@/constants/messages/MessageTypeEnum'
 import { useQueryClient } from '@tanstack/react-query'
 import { ChatKey } from '@/services/chatServices'
+import { toast } from 'react-toastify'
 
 const ChatBottombar = () => {
   const { chatId } = useParams()
@@ -51,7 +52,9 @@ const ChatBottombar = () => {
       if (inputRef.current) {
         inputRef.current.focus()
       }
+      return
     }
+    toast.error('Nội dung tin nhắn không được để trống')
   }
 
   const handleSendFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
